@@ -20,7 +20,7 @@ contract Tomi204 is ERC721A {
             "ERC721Metadata: URI query for nonexistent token"
         );
         return
-            "https://ipfs.io/ipfs/QmXMjXEjWBAzfA3UGPEQPub8iZAqD8myK12jKpE4F9EGfe";
+            "https://ipfs.io/ipfs/QmaimSizAvBjCpDmbm8W3DBuDFXx3AvCpeYMcbHmBMMnVP";
     }
 
     function mint(uint256 quantity) external payable {
