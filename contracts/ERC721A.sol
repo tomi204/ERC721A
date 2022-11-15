@@ -5,9 +5,16 @@ import "erc721a/contracts/ERC721A.sol";
 
 contract Tomi204 is ERC721A {
     uint256 token_count;
-
-    constructor() ERC721A("Tomi204", "TOMI204") {}
-
+    address public owner;
+    constructor() ERC721A("Tomi204", "TOMI204") {
+        owner = msg.sender;
+    }
+     
+    modifier onlyOwner(){
+        require(msg.sender == owner);
+        _;
+    }
+      
     function tokenURI(uint256 tokenId)
         public
         view
@@ -20,10 +27,11 @@ contract Tomi204 is ERC721A {
             "ERC721Metadata: URI query for nonexistent token"
         );
         return
-            "https://ipfs.io/ipfs/QmaimSizAvBjCpDmbm8W3DBuDFXx3AvCpeYMcbHmBMMnVP";
+            "https://ipfs.io/ipfs/QmUoQKfU6UBdQUQ1u3dRjF6C5Z2Ekso6MfUjhn3d2LfgN3";
     }
 
-    function mint(uint256 quantity) external payable {
+    function mint(uint256 quantity) external payable onlyOwner{
+        require(token_count + quantity <= 204, "Max supply reached");
         token_count += 1;
         _mint(msg.sender, quantity);
     }
